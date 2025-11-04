@@ -9,13 +9,20 @@ const usuario = {
 
 //======================PROMESAS===============
 
-//Eventos
+/**
+ * Agrega un Listener al botón para obtener la respuesta del usuario.
+ * @event
+ * @listens click
+ */
 btn.addEventListener('click', () => {
     recibirRespuesta();
 });
 
-//Funciones
-
+/**
+ * Función para renderizar los datos sobre el usuario.
+ * @param {Object} usuario Objeto que contiene los datos del usuario
+ * @returns {Object} Objeto que contiene los datos del usuario
+ */
 const renderizarDatos = (usuario) => {
     const userContainer = document.createElement("DIV");
     const pNombre = document.createElement("P");
@@ -31,12 +38,15 @@ const renderizarDatos = (usuario) => {
 
     return usuario;
 }
-//Función que simule una llamada a una API y devuelva una promesa.
-// La promesa se resuelve después de un retraso simulado (2s).
-
+/**
+ * Función que simule una llamada a una API y devuelva una promesa.
+ * La promesa se resuelve después de un retraso simulado (2s).
+ * @returns {Promise} Promesa que se resuelve con los datos del usario
+ */
 const llamarAPI = () => {
     return new Promise((resolve, reject) => {
-        let chivato = false;
+        //la variable temporal para testear las funciones:
+        let chivato = true;
         if (chivato === true) {
             setTimeout(() => {
                 resolve(usuario);
@@ -49,7 +59,9 @@ const llamarAPI = () => {
     });
 }
 
-//Invocación de la promesa
+/**
+ * Invocación de la promesa.
+ */
 // const recibirRespuesta = () => {
 //     llamarAPI()
 //         .then((respuesta) => {
@@ -61,6 +73,11 @@ const llamarAPI = () => {
 // }
 
 //========================AWAIT===================
+/**
+ * Invocación de la promesa.
+ * @async
+ * @returns {Promise}
+ */
 const recibirRespuesta = async () => {
     try {
         let respuesta = await llamarAPI();
