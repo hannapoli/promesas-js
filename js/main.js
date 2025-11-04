@@ -4,13 +4,10 @@ const infoUsuario = document.querySelector('#infoUsuario');
 const usuario = {
     id: 1,
     nombre: "Fulanito Pérez Etxebarria",
-    correoElectrónico: "fulanito123@gmail.com",
-    edad: 36,
-    cuidad: "Llodio",
-    profesión: "actor"
+    email: "fulanito123@gmail.com",
 }
 
-//================================PROMESAS
+//======================PROMESAS===============
 
 //Eventos
 btn.addEventListener('click', () => {
@@ -19,42 +16,56 @@ btn.addEventListener('click', () => {
 
 //Funciones
 
-//Crea una función que simule una llamada a una API y devuelva una promesa.
-// La promesa debe resolverse después de un retraso simulado (por ejemplo, 2 segundos).
-
 const renderizarDatos = (usuario) => {
+    const userContainer = document.createElement("DIV");
     const pNombre = document.createElement("P");
+    const pCorreo = document.createElement("P");
+
+    userContainer.classList.add('userContainer');
+    pNombre.textContent = usuario.nombre;
+    pCorreo.textContent = usuario.email;
+
+    userContainer.append(pNombre);
+    userContainer.append(pCorreo);
+    infoUsuario.append(userContainer);
+
+    return usuario;
 }
+//Función que simule una llamada a una API y devuelva una promesa.
+// La promesa se resuelve después de un retraso simulado (2s).
 
 const llamarAPI = () => {
-    let promesa = new Promise((resolve, reject) => {
-        let chivato = true;
+    return new Promise((resolve, reject) => {
+        let chivato = false;
         if (chivato === true) {
-            resolve('bien');
-            //pintar
+            setTimeout(() => {
+                resolve(usuario);
+            }, 2000);
         } else {
-            reject('El usuario no existe!')
-            //error
+            setTimeout(() => {
+                reject('No se sabe. Sigue buscando...');
+            }, 2000);
         }
     });
-    return promesa;
 }
 
 //Invocación de la promesa
-const recibirRespuesta = () => {
-    llamarAPI()
-        .then((respuesta) => {
-            console.log(respuesta);
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-        .finally(() => {
-            console.log('finally');
-        })
+// const recibirRespuesta = () => {
+//     llamarAPI()
+//         .then((respuesta) => {
+//             renderizarDatos(respuesta);
+//         })
+//         .catch((error) => {
+//             infoUsuario.textContent = error;
+//         })
+// }
+
+//========================AWAIT===================
+const recibirRespuesta = async () => {
+    try {
+        let respuesta = await llamarAPI();
+        renderizarDatos(respuesta);
+    } catch (error) {
+        infoUsuario.textContent = error;
+    }
 }
-//resolver la promesa con timeout 2000
-
-//.then y catch para mostrar los datos o un error
-
-//========================AWAIT

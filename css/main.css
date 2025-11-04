@@ -12,9 +12,10 @@ body {
 }
 
 h1 {
-    font-size: 2rem;
-    padding: 1em;
+    font-size: 2.3rem;
+    padding: 0.7em;
     margin: 1em;
+    color: blueviolet;
 }
 
 .flexContainer {
@@ -28,12 +29,15 @@ h1 {
 
 .infoUsuario {
     font-size: 1rem;
+    margin-bottom: 1em;
+    font-size: 1.5rem;
+    color: red;
 }
 
 .btn {
     cursor: pointer;
-    padding: 0.4em 1em;
-    margin: 1em 2em;
+    padding: 0.5em 1em;
+    margin: 1em 2em 1.5em 2em;
     border-radius: 10px;
     font-size: 1.5rem;
     font-weight: 600;
@@ -43,4 +47,14 @@ h1 {
 
 .btn:hover {
     opacity: 80%;
+}
+
+p {
+    font-size: 1.8rem;
+    color: blue;
+    font-style: italic;
+}
+
+.userContainer {
+    padding: 1em;
 }
